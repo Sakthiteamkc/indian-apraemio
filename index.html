@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coin Click Counter</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    img {
+      width: 150px;
+      cursor: pointer;
+    }
+    #count {
+      font-size: 24px;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+  <!-- Include jQuery for JSONP support -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Click the Coin!</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Coin" id="coin">
+  <div id="count">0</div>
+  <script>
+    let count = 0;
+    const username = "User1"; // Change or prompt as needed
+
+    // Attach click event listener to the coin image
+    $("#coin").on("click", incrementCount);
+
+    function incrementCount() {
+      count++;
+      $("#count").text(count);
+      
+      // Build the URL for the JSONP request.
+      // Replace the placeholder URL below with your deployed Apps Script Web App URL.
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxvMoV6UZ7wa4SuHGAqo4Utp3WMYgwoBD2_Pd8eFRWK_2VmkOS_wjPlUF3b-l_kOzjfxQ/exec";
+      
+      $.ajax({
+        url: scriptURL,
+        type: "GET",           // JSONP works only with GET requests
+        dataType: "jsonp",       // Use JSONP to bypass CORS restrictions
+        data: {
+          username: username,
+          count: count,
+          callback: "?"        // jQuery will automatically handle the callback
+        },
+        success: function(response) {
+          console.log("Response:", response);
+        },
+        error: function(error) {
+          console.error("Error:", error);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
