@@ -1,26 +1,179 @@
+
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
-    padding: 20px;
+    background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+    color: #f1c40f;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    max-width: 400px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Header Section */
+header {
+    background: #111;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-img {
-    width: 100px;
+/* Navigation */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop Navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #f1c40f;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
     cursor: pointer;
 }
 
-@media (max-width: 600px) {
-    img {
-        width: 80px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #222;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
     }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 100px auto 50px auto;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Event Slider */
+.event-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.event-track {
+    display: flex;
+    gap: 20px;
+    width: calc(300px * 6); /* Adjust based on number of events */
+    animation: scrollEvents 15s linear infinite;
+}
+
+.event-card {
+    width: 300px;
+    background: #333;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.event-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+@keyframes scrollEvents {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-900px); } /* Adjust based on event count */
+}
+
+/* Coin Click Counter Section */
+.container {
+    max-width: 400px;
+    margin: 30px auto;
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Coin Image */
+img {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+/* Click Count Display */
+#count {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Instructions */
+.instructions {
+    font-size: 16px;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    background: #111;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 20px;
+    color: white;
 }
