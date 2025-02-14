@@ -1,24 +1,32 @@
-let count = 0;
-const username = prompt("Enter your Telegram username:").trim();
+document.addEventListener("DOMContentLoaded", function() {
+    // Smooth scrolling for navigation links
+    const navLinks = document.querySelectorAll("nav ul li a");
 
-if (!username) {
-    alert("Username is required!");
-} else {
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            const targetSection = document.querySelector(this.getAttribute("href"));
+            targetSection.scrollIntoView({ behavior: "smooth" });
+        });
+    });
+
+    // Coin Click Counter Logic
+    let count = 0;
+    const username = prompt("Enter your username:").trim();
+
+    if (!username) {
+        alert("Username is required to play!");
+    } else {
+        document.getElementById("coin").addEventListener("click", incrementCount);
+    }
+
     async function incrementCount() {
         count++;
         document.getElementById("count").innerText = count;
-
-        try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxvMoV6UZ7wa4SuHGAqo4Utp3WMYgwoBD2_Pd8eFRWK_2VmkOS_wjPlUF3b-l_kOzjfxQ/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, count })
-            });
-
-            const result = await response.text();
-            console.log(result);
-        } catch (error) {
-            console.error("Error sending data:", error);
-        }
     }
+});
+
+function toggleMenu() {
+    const nav = document.querySelector(".nav-links");
+    nav.style.display = (nav.style.display === "flex") ? "none" : "flex";
 }
